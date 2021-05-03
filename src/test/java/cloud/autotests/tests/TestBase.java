@@ -1,5 +1,6 @@
 package cloud.autotests.tests;
 
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.junit5.AllureJunit5;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,6 +15,7 @@ public class TestBase {
     @BeforeAll
     static void setUp() {
         configureDriver();
+        Configuration.baseUrl = ("https://ya.ru");
     }
 
     @AfterEach
