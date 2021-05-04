@@ -9,7 +9,7 @@ repositories {
 }
 
 def allureVersion = "2.13.9",
-    selenideVersion = "5.20.1",
+    selenideVersion = "5.20.4",
     junitVersion = "5.7.1"
 
 allure {
@@ -28,6 +28,7 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "io.rest-assured:rest-assured:4.3.1",
+            "org.slf4j:slf4j-simple:1.7.30",
             "io.qameta.allure:allure-rest-assured:$allureVersion",
             "org.aeonbits.owner:owner:1.0.12",
             "org.assertj:assertj-core:3.19.0",
@@ -37,14 +38,14 @@ dependencies {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
-    systemProperty "chromeoptions.prefs", "intl.accept_languages=en"
+    systemProperty "chromeoptions.prefs", "intl.accept_languages=ru"
 
     if (System.getProperty("threads") != null) {
         systemProperties += [

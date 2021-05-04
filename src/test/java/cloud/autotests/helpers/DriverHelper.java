@@ -22,15 +22,6 @@ public class DriverHelper {
         return ConfigFactory.newInstance().create(DriverConfig.class, System.getProperties());
     }
 
-    public static String getWebMobile() {
-        return getDriverConfig().webBrowserMobileView();
-    }
-
-    public static boolean isWebMobile() {
-        return !getWebMobile().equals("");
-    }
-
-
     public static String getWebRemoteDriver() {
         // https://%s:%s@selenoid.autotests.cloud/wd/hub/
         return String.format(getDriverConfig().webRemoteDriverUrl(),
@@ -68,14 +59,6 @@ public class DriverHelper {
         Configuration.timeout = 10000;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-
-        if (isWebMobile()) { // for chrome only
-            ChromeOptions chromeOptions = new ChromeOptions();
-            Map<String, Object> mobileDevice = new HashMap<>();
-            mobileDevice.put("deviceName", getWebMobile());
-            chromeOptions.setExperimentalOption("mobileEmulation", mobileDevice);
-            capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-        }
 
         if (isRemoteWebDriver()) {
             capabilities.setCapability("enableVNC", true);
